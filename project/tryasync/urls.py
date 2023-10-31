@@ -8,7 +8,7 @@ from rest_framework import routers
 
 
 urlpatterns = [
-    path('ws/async/', index),
+    path('ws/async/', index, name='asyncTest'),
     path('ws/asyncReviews/<int:medico>/',
          asyncDocReviews, name='asyncDocReviews'),
 

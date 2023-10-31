@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     # Interal Apps
     'medico',
     'tryasync',
-    'functionServices'
+    'functionServices',
+    'usuarios',
 ]
 
 CORS_ALLOWED_ORIGINS = [

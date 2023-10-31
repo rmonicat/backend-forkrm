@@ -11,7 +11,7 @@ import random
 
 
 def index(request):
-    return render(request, 'index.html', context={'text': 'hello world xx'})
+    return render(request, 'index.html', context={'text': 'Prueba de async', 'text55': 'Valores: '})
 
 
 async def testAsyncProviderDocReviews(data, nro, tinit, *args, **kwargs):

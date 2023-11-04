@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # External packages
     'rest_framework',
+    'rest_framework.authtoken',
     'channels',
     'corsheaders',
     'drf_spectacular',
@@ -125,6 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/auth/customizing/
 
 AUTH_USER_MODEL = 'medico.Usuario'
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

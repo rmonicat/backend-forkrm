@@ -1,9 +1,15 @@
+from .serializers import MedicoSerializer, ReviewSerializer, LoginSerializer
 from django.shortcuts import render
+
+from django.contrib.auth import authenticate, login
+from rest_framework.authtoken.models import Token
 
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
-from rest_framework import viewsets, mixins, filters
+from rest_framework import status, viewsets, mixins, filters
 from rest_framework.response import Response
+
+from drf_spectacular.utils import extend_schema
 from .models import Medico, Review
 from .serializers import MedicoSerializer, ReviewSerializer
 from django.http import JsonResponse, HttpRequest, QueryDict
@@ -35,6 +41,30 @@ def docprofile(request):
 
 def userprofile(request):
     return render(request, 'userprofile.html', {})
+
+
+class LoginView(APIView):
+    @extend_schema(request=LoginSerializer, responses=LoginSerializer)
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+
+        if serializer.is_valid():
+            usuario = serializer.validated_data['username']
+            password = serializer.validated_data['password']
+
+            user = authenticate(request, usuario=usuario, password=password)
+
+            if user is not None:
+                login(request, user)
+                token, created = Token.objects.get_or_create(user=user)
+                return Response({'token': token.key})
+            else:
+                return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        return render(request, 'login.html', {'text': "Por favor ingrese su usuario"})
 
 
 class AllDocsList_(APIView):

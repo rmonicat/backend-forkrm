@@ -96,6 +96,19 @@
         "*": "${webRoot}/*"
       }
     },
+
+    {
+      "name": "a5- Login desde app medico",
+      "request": "launch",
+      "type": "msedge",
+      "url": "http://localhost:7000/api/login/",
+      "webRoot": "${workspaceFolder/project/medico/templates/}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "*": "${webRoot}/*"
+      }
+    },
+
     {
       "name": "a4-Admin",
       "request": "launch",

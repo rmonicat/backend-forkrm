@@ -86,7 +86,7 @@
       }
     },
     {
-      "name": "a3-Login",
+      "name": "a3-Login funcion desde usuarios",
       "request": "launch",
       "type": "msedge",
       "url": "http://localhost:7000/usuarios/login_user/",
@@ -96,7 +96,17 @@
         "*": "${webRoot}/*"
       }
     },
-
+    {
+      "name": "a3-Login clase desde usuarios",
+      "request": "launch",
+      "type": "msedge",
+      "url": "http://localhost:7000/usuarios/login/",
+      "webRoot": "${workspaceFolder/project/usuarios/templates/}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "*": "${webRoot}/*"
+      }
+    },
     {
       "name": "a5- Login desde app medico",
       "request": "launch",
